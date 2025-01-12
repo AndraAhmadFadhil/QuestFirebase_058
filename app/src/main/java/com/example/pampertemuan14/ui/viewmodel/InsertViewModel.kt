@@ -9,6 +9,20 @@ import com.example.pampertemuan14.model.Mahasiswa
 import com.example.pampertemuan14.repository.MahasiswaRepository
 import kotlinx.coroutines.launch
 
+sealed class FormState{
+    object Idle : FormState()
+    object Loading : FormState()
+    data class Success(val message: String) : FormState()
+    data class Error(val message: String) : FormState()
+
+}
+
+data class InsertUiState(
+    val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
+    val isEntryValid: FormErrorState = FormErrorState()
+)
+
+
 data class FormErrorState(
     val nim: String? = null,
     val nama: String? = null,
