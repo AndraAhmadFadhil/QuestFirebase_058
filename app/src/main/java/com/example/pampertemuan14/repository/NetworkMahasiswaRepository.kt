@@ -49,6 +49,14 @@ class NetworkMahasiswaRepository(
     }
 
     override suspend fun deleteMahasiswa(nim: String) {
+        try {
+            firestore.collection("Mahasiswa")
+                .document(nim)
+                .delete()
+                .await()
+        } catch (e:Exception){
+            throw Exception("Gagal menghapus data mahasiswa: ${e.message}")
+        }
 
     }
 
