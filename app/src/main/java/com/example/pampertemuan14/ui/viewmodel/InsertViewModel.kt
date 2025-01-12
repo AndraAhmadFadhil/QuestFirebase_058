@@ -9,7 +9,14 @@ import com.example.pampertemuan14.model.Mahasiswa
 import com.example.pampertemuan14.repository.MahasiswaRepository
 import kotlinx.coroutines.launch
 
-
+fun MahasiswaEvent.toMhsModel() : Mahasiswa = Mahasiswa(
+    nim = nim,
+    nama = nama,
+    jenis_kelamin = jenis_kelamin,
+    alamat = alamat,
+    kelas = kelas,
+    angkatan = angkatan
+)
 
 data class MahasiswaEvent(
     val nim: String = "",
