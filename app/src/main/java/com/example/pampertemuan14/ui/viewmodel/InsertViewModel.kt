@@ -9,6 +9,25 @@ import com.example.pampertemuan14.model.Mahasiswa
 import com.example.pampertemuan14.repository.MahasiswaRepository
 import kotlinx.coroutines.launch
 
+data class FormErrorState(
+    val nim: String? = null,
+    val nama: String? = null,
+    val jenis_kelamin: String? = null,
+    val alamat: String? = null,
+    val kelas: String? = null,
+    val angkatan: String? = null,
+){
+    fun isValid(): Boolean {
+        return nim == null
+                && nama == null
+                && jenis_kelamin == null
+                && alamat == null
+                && kelas == null
+                && angkatan == null
+    }
+}
+
+
 fun MahasiswaEvent.toMhsModel() : Mahasiswa = Mahasiswa(
     nim = nim,
     nama = nama,
