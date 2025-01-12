@@ -26,24 +26,33 @@ class HomeViewModel(
         getMhs()
     }
 
-    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getMhs(){
+    fun getMhs() {
         viewModelScope.launch {
             mhs.getMahasiswa()
                 .onStart {
                     mhsUiState = HomeUiState.Loading
                 }
                 .catch {
-                    mhsUiState
+                    mhsUiState = HomeUiState.Error(it)
                 }
                 .collect {
-                    mhsUiState = if (it.isEmpty()) {
-                        HomeUiState.Error(Exception("Belum ada data mahasiswa"))
-                    } else {
-                        HomeUiState.Success(it)
-                    }
-
+                    mhsUiState =
+                        if (it.isEmpty()){
+                            HomeUiState.Error(Exception("Belum ada data mahasiswa"))
+                        }
+                        else{
+                            HomeUiState.Success(it)
+                        }
                 }
+        }
+    }
+    fun deleteMhs(mahasiswa: Mahasiswa){
+        viewModelScope.launch {
+            try{
+                mhs.deleteMahasiswa(mahasiswa.toString())
+            } catch (e: Exception){
+                mhsUiState = HomeUiState.Error(e)
+            }
         }
     }
 
