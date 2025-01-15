@@ -32,10 +32,10 @@ class InsertViewModel(
         val errorState = FormErrorState(
             nim = if (event.nim.isNotEmpty()) null else "NIM tidak boleh kosong",
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
-            jenis_kelamin  = if (event.jenis_kelamin.isNotEmpty()) null else "Jenis Kelamin tidak boleh kosong",
+            judul  = if (event.judul.isNotEmpty()) null else "Judul tidak boleh kosong",
             alamat = if (event.alamat.isNotEmpty()) null else "Alamat tidak boleh kosong",
-            kelas = if (event.kelas.isNotEmpty()) null else "Kelas tidak boleh kosong",
-            angkatan = if (event.angkatan.isNotEmpty()) null else "Angkatan tidak boleh kosong"
+            dospem1 = if (event.dospem1.isNotEmpty()) null else "Dosen Pembimbing 1 tidak boleh kosong",
+            dospem2 = if (event.dospem2.isNotEmpty()) null else "Dosen Pembimbing 2 tidak boleh kosong"
 
         )
 
@@ -85,18 +85,18 @@ data class InsertUiState(
 data class FormErrorState(
     val nim: String? = null,
     val nama: String? = null,
-    val jenis_kelamin: String? = null,
+    val judul: String? = null,
     val alamat: String? = null,
-    val kelas: String? = null,
-    val angkatan: String? = null,
+    val dospem1: String? = null,
+    val dospem2: String? = null,
 ){
     fun isValid(): Boolean {
         return nim == null
                 && nama == null
-                && jenis_kelamin == null
+                && judul == null
                 && alamat == null
-                && kelas == null
-                && angkatan == null
+                && dospem1 == null
+                && dospem2 == null
     }
 }
 
@@ -104,17 +104,17 @@ data class FormErrorState(
 fun MahasiswaEvent.toMhsModel() : Mahasiswa = Mahasiswa(
     nim = nim,
     nama = nama,
-    jenis_kelamin = jenis_kelamin,
+    judul = judul,
     alamat = alamat,
-    kelas = kelas,
-    angkatan = angkatan
+    dospem2 = dospem2,
+    dospem1 = dospem1
 )
 
 data class MahasiswaEvent(
     val nim: String = "",
     val nama: String = "",
-    val jenis_kelamin: String = "",
+    val judul: String = "",
     val alamat: String = "",
-    val kelas: String = "",
-    val angkatan: String = "",
+    val dospem1: String = "",
+    val dospem2: String = "",
 )

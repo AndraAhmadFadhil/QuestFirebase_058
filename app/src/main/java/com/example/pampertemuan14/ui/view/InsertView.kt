@@ -212,9 +212,9 @@ fun FormMahasiswa(
                     horizontalArrangement = Arrangement.Start
                 ) {
                     RadioButton(
-                        selected = mahasiswaEvent.jenis_kelamin == jk,
+                        selected = mahasiswaEvent.judul == jk,
                         onClick = {
-                            onValueChange(mahasiswaEvent.copy(jenis_kelamin = jk))
+                            onValueChange(mahasiswaEvent.copy(judul = jk))
                         }
                     )
                     Text(
@@ -225,7 +225,7 @@ fun FormMahasiswa(
         }
 
         Text(
-            text = errorState.jenis_kelamin ?: "",
+            text = errorState.judul ?: "",
             color = Color.Red
         )
 
@@ -249,15 +249,15 @@ fun FormMahasiswa(
         Text(text = "Kelas")
 
         Row {
-            kelas.forEach { kelas ->
+            kelas.forEach { dospem1 ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
                     RadioButton(
-                        selected = mahasiswaEvent.kelas == kelas,
+                        selected = mahasiswaEvent.dospem1 == dospem1,
                         onClick = {
-                            onValueChange(mahasiswaEvent.copy(kelas = kelas))
+                            onValueChange(mahasiswaEvent.copy(dospem1 = dospem1))
                         }
                     )
                     Text(text = kelas)
@@ -266,24 +266,24 @@ fun FormMahasiswa(
         }
 
         Text(
-            text = errorState.kelas ?: "",
+            text = errorState.dospem1 ?: "",
             color = Color.Red
         )
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = mahasiswaEvent.angkatan,
+            value = mahasiswaEvent.dospem2,
             onValueChange = {
-                onValueChange(mahasiswaEvent.copy(angkatan = it))
+                onValueChange(mahasiswaEvent.copy(dospem2 = it))
             },
             label = { Text("Angkatan") },
-            isError = errorState.angkatan != null,
+            isError = errorState.dospem2 != null,
             placeholder = { Text("Masukkan angkatan") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
         Text(
-            text = errorState.angkatan ?: "",
+            text = errorState.dospem2 ?: "",
             color = Color.Red
         )
     }
